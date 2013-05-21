@@ -11,6 +11,37 @@ define(function() {
       //
       // otherwise the function should return the number, or false if no number
       // was provided or the value provided is not a number
+      var result = this.getTypex(num);
+      switch (result) {
+        case 'divisible3': 
+          return 'fizz';
+          break;
+        case 'divisible5': 
+          return 'buzz';
+          break;
+        case 'divisible5&3': 
+          return 'fizzbuzz';
+          break;
+        case 'hasNoNumber': 
+          return false;
+          break;
+        case 'number': 
+          return num;
+          break;        
+      }
+    },
+    getTypex : function(num){
+      if ( num%3===0 && num%5===0 ) {
+        return 'divisible5&3';
+      }else if ( num%5===0 ){
+        return 'divisible5';
+      }else if (num%3===0){
+        return 'divisible3';
+      }else if (isNaN(num)){
+        return 'hasNoNumber';
+      }else {
+        return 'number';
+      }
     }
   };
 });

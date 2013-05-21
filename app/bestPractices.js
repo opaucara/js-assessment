@@ -8,21 +8,22 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 define(function() {
   return {
     globals : function() {
-      myObject = {
+      var myObject = {
         name : 'Jory'
       };
 
       return myObject;
     },
-
-    functions : function(flag) {
-      if (flag) {
-        function getValue() { return 'a'; }
-      } else {
-        function getValue() { return 'b'; }
+    getValue : function(flag){
+      if (flag){
+        return 'a';
+      }else {
+        return 'b';
       }
-
-      return getValue();
+    },
+    functions : function(flag) {
+      //
+      return this.getValue(flag);
     },
 
     parseInt : function(num) {
@@ -30,7 +31,7 @@ define(function() {
     },
 
     identity : function(val1, val2) {
-
+      return val1 === val2;
     }
   };
 });
