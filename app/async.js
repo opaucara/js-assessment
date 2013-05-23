@@ -7,7 +7,14 @@ define([ 'jquery' ], function($) {
     },
 
     manipulateRemoteData : function(url) {
+    	var res = function(data){
+    		return data;
+    	};
+    	$.getJSON(url).done(function(data){
+            console.log(data.people);
+        });
 
+    	return $.when($.getJSON(url)).promise();
     }
   };
 });
