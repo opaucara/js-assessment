@@ -39,15 +39,26 @@ define(function() {
     },
 
     callIt : function(fn) {
-
+        var args = Array.prototype.slice.call(arguments,1);
+        return fn.apply(null,args);
     },
 
     partialUsingArguments : function(fn) {
-
+        var args = Array.prototype.slice.call(arguments, 1);
+        return function() {
+            var allArguments = args.concat(Array.prototype.slice.call(arguments));
+            return fn.apply(this, allArguments);
+        };
     },
 
     curryIt : function(fn) {
-
+        return function(a){
+            return function(b){
+                return function(c){
+                    return fn(a, b, c);
+                };
+            };
+        };
     }
   };
 });
